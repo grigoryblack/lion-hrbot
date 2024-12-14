@@ -7,10 +7,10 @@
     "client": "vite",
     "server": "node server/server.js",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "build:client": "vite build --cwd client",
+    "build:client": "vite build",
     "build:server": "tsc -b",
     "build": "npm run build:client && npm run build:server",
-    "preview": "vite preview --cwd client",
+    "preview": "vite preview client",
     "lint": "eslint client",
     "start": "npm run build && node server.js"
   },
