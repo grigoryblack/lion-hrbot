@@ -1,11 +1,9 @@
-import React from 'react';
 import { Modal } from 'antd';
 
 const PrivacyPolicyModal = ({ visible, onClose }) => {
     return (
         <Modal
-            title="Политика обработки персональных данных"
-            visible={visible}
+            open={visible}
             onCancel={onClose}
             footer={null}
             width={800}

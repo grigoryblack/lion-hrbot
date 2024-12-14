@@ -4,15 +4,26 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint my-vite-app",
-    "preview": "vite preview"
+    "client": "vite",
+    "server": "node server/server.js",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "build:client": "vite build --cwd client",
+    "build:server": "tsc -b",
+    "build": "npm run build:client && npm run build:server",
+    "preview": "vite preview --cwd client",
+    "lint": "eslint client",
+    "start": "npm run build && node server.js"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
     "antd": "^5.22.4",
     "antd-mask-input": "^2.0.7",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -21,6 +32,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
