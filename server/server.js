@@ -29,7 +29,8 @@ app.post("/send", upload.array("files"), async (req, res) => {
             preferredContactMethod,
             comment,
             agreement,
-            email
+            email,
+            storeEmail
         } = req.body;
 
         if (!fullName || !phone || !store || !position || !workSchedule || !source || !preferredContactMethod || !agreement) {
@@ -66,7 +67,7 @@ app.post("/send", upload.array("files"), async (req, res) => {
 
         const mailOptions = {
             from: '"Форма обратной связи" <example@yandex.ru>',
-            to: "example@yandex.ru",
+            to: ["example@yandex.ru", storeEmail],
             subject: "Новая заявка с формы обратной связи",
             html: mailHTML,
             attachments,

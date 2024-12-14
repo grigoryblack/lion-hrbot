@@ -79,11 +79,22 @@ const AppServices = () => {
     };
 
     /** Обрабатывает отправку формы */
-    const handleFinish = async (values: Record<string, any>) => {
+    const handleFinish = async (values) => {
         try {
             setLoading(true);
-            const formData = new FormData();
 
+            const position = values?.position;
+            const store = data.Результат.find(store =>
+                store.Должность.some(d => d.Наименование === position)
+            );
+
+            if (store) {
+                values.storeEmail = store.ПочтаМагазина;
+            } else {
+                values.storeEmail = null;
+            }
+
+            const formData = new FormData();
             Object.keys(values).forEach((key) => {
                 if (key === "files") {
                     values.files?.forEach((file) => {
@@ -106,11 +117,10 @@ const AppServices = () => {
             });
 
             form.resetFields();
-
-            setIsEmailSelected(false)
+            setIsEmailSelected(false);
 
         } catch (error) {
-
+            console.log(error)
             notification.error({
                 message: "Ошибка",
                 description: "Не удалось отправить форму. Попробуйте снова.",

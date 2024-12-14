@@ -1,4 +1,4 @@
-export const generateMailHTML = ({
+export const    generateMailHTML = ({
                                      fullName,
                                      phone,
                                      store,
