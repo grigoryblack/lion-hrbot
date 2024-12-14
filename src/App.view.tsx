@@ -118,7 +118,7 @@ const AppView: React.FC<TAppViewProps> = (props) => {
                         name="preferredContactMethod"
                         rules={[{required: true, message: "Пожалуйста, выберите способ связи!"}]}
                     >
-                        <Select placeholder="Выберите способ связи" size="large">
+                        <Select placeholder="Выберите способ связи" size="large" onChange={props.handleContactMethodChange}>
                             {contactMethodOptions.map((option) => (
                                 <Select.Option key={option.value} value={option.value}>
                                     {option.label}
@@ -126,6 +126,19 @@ const AppView: React.FC<TAppViewProps> = (props) => {
                             ))}
                         </Select>
                     </Form.Item>
+
+                    {props.isEmailSelected && (
+                        <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[
+                                { required: true, message: "Пожалуйста, введите ваш email!" },
+                                { type: "email", message: "Введите корректный email!" },
+                            ]}
+                        >
+                            <Input placeholder="Введите ваш email" size="large" />
+                        </Form.Item>
+                    )}
 
                     <Form.Item label="Комментарий" name="comment">
                         <TextArea size="large" placeholder="Введите комментарий" rows={4}/>

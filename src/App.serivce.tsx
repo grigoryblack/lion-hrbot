@@ -9,12 +9,22 @@ const AppServices = () => {
     const [positions, setPositions] = useState([]);
     /** График */
     const [schedules, setSchedules] = useState([]);
+    /** Выбран email */
+    const [isEmailSelected, setIsEmailSelected] = useState(false);
     /** Флаг показа модалки */
     const [isModalVisible, setIsModalVisible] = useState(false);
     /** Лоадер */
     const [loading, setLoading] = useState(false);
     /** Основная форма */
     const [form] = Form.useForm();
+
+    /** Функция для рендера поля если выбран email */
+    const handleContactMethodChange = (value) => {
+        setIsEmailSelected(value === "E-mail");
+        if (value !== "E-mail") {
+            form.resetFields(["email"]);
+        }
+    };
 
     /** Запрещаем scroll во время загрузки */
     useEffect(() => {
@@ -92,9 +102,12 @@ const AppServices = () => {
 
             notification.success({
                 message: "Форма успешно отправлена!",
+                description: "Компания благодарит Вас за отклик на вакансию. Свяжемся с вами в течение 1-2 рабочих дней.",
             });
 
             form.resetFields();
+
+            setIsEmailSelected(false)
 
         } catch (error) {
 
@@ -140,12 +153,15 @@ const AppServices = () => {
                     positions={positions}
                     schedules={schedules}
                     isModalVisible={isModalVisible}
+                    isEmailSelected={isEmailSelected}
                     setIsModalVisible={setIsModalVisible}
                     loading={loading}
                     handleStoreChange={handleStoreChange}
                     handlePositionChange={handlePositionChange}
                     handleFinish={handleFinish}
-                    validateFile={validateFile}/>
+                    validateFile={validateFile}
+                    handleContactMethodChange={handleContactMethodChange}
+    />
 };
 
 export default AppServices;

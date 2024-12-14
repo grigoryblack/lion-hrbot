@@ -22,6 +22,10 @@ export type TAppViewProps = {
     handleFinish: (values: Record<string, any>) => void;
     /** Функция проверки загружаемого файла. */
     validateFile: (file: File) => Promise<void>;
+    /** Функция для установки флага имейл*/
+    handleContactMethodChange: (value: string) => void;
+    /** Флаг что выбран имейл */
+    isEmailSelected: boolean
 };
 
 /**
@@ -40,6 +44,8 @@ type TForm = {
     files?: File[];
     /** Предпочтительный способ связи. */
     preferredContactMethod?: string;
+    /** E-mail*/
+    email: string;
     /** Согласие с политикой обработки персональных данных. */
     agreement?: boolean;
 };
