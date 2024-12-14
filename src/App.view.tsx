@@ -173,7 +173,7 @@ const AppView: React.FC<TAppViewProps> = (props) => {
                         ]}
                     >
                         <Checkbox>
-                            Я согласен с <a className={styles.policy} onClick={() => setIsModalVisible(true)}>условиями
+                            Я согласен с <a className={styles.policy} onClick={() => props.setIsModalVisible(true)}>условиями
                             обработки персональных данных.</a>
                         </Checkbox>
                     </Form.Item>
