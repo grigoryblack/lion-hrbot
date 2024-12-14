@@ -7,8 +7,6 @@ import {
     contactMethodOptions,
     sourceOptions,
 } from "./assets/config/list.config.ts";
-import {useEffect, useState} from "react";
-import axios from "axios";
 
 const {TextArea} = Input;
 
@@ -61,7 +59,7 @@ const AppView: React.FC<TAppViewProps> = (props) => {
                                 }
                                 onChange={props.handleStoreChange}>
                             {data.Результат.map((store) => (
-                                <Select.Option key={store.КодМагазина} value={store.КодМагазина}>
+                                <Select.Option key={store.КодМагазина} value={store.Наименование}>
                                     {store.Наименование}
                                 </Select.Option>
                             ))}
@@ -144,7 +142,7 @@ const AppView: React.FC<TAppViewProps> = (props) => {
                             multiple
                             maxCount={5}
                             beforeUpload={props.validateFile}
-                            accept=".pdf,.jpeg,.jpg,.png,."
+                            accept=".pdf,.jpeg,.jpg,.png,.heif,.heic"
                             customRequest={({file, onSuccess, onError}) => {
                                 setTimeout(() => {
                                     onSuccess && onSuccess("ok");

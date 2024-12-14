@@ -39,9 +39,9 @@ const AppServices = () => {
     }, [loading]);
 
     /** Обрабатывает выбор магазина, обновляя должности и графики */
-    const handleStoreChange = (storeCode: string) => {
+    const handleStoreChange = (storeName: string) => {
         const selectedStore = data.Результат.find(
-            (store) => store.КодМагазина === storeCode
+            (store) => store.Наименование === storeName
         );
 
         if (selectedStore) {
@@ -109,7 +109,14 @@ const AppServices = () => {
 
     /** Проверяет файл на тип и размер перед загрузкой */
     const validateFile = (file: File): Promise<void> => {
-        const isValidType = ["application/pdf", "image/jpeg", "image/png"].includes(file.type);
+        const isValidType = [
+            "application/pdf",
+            "image/jpeg",
+            "image/png",
+            "image/jpg",
+            "image/heic",
+            "image/heif"
+        ].includes(file.type);
         const isValidSize = file.size <= 5 * 1024 * 1024;
 
         if (!isValidType) {

@@ -36,12 +36,12 @@ app.post("/send", upload.array("files"), async (req, res) => {
         }
 
         const transporter = nodemailer.createTransport({
-            host: "smtp.yandex.ru",
+            host: "smtp.example.ru",
             port: 465,
             secure: true,
             auth: {
-                user: "drz2002@yandex.ru",
-                pass: "ipuyaysejovokboe",
+                user: "example@yandex.ru",
+                pass: "qwerty1234",
             },
         });
 
@@ -64,7 +64,7 @@ app.post("/send", upload.array("files"), async (req, res) => {
 
         const mailOptions = {
             from: '"Форма обратной связи" <drz2002@yandex.ru>',
-            to: "bathedultrapro@yandex.ru",
+            to: "example@yandex.ru",
             subject: "Новая заявка с формы обратной связи",
             html: mailHTML,
             attachments,
