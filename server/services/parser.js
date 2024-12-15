@@ -18,7 +18,7 @@ async function fetchAndSaveData() {
     try {
         const response = await axios.get(url, {
             auth: auth,
-            responseType: 'text' // Получаем ответ в виде текста
+            responseType: 'text'
         });
 
         // Сохранение всего содержимого страницы в указанный файл

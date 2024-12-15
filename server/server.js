@@ -14,9 +14,15 @@ const upload = multer({
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "*",
+}))
 
-app.post("/send", upload.array("files"), async (req, res) => {
+app.post("/send", (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+}, upload.array("files"), async (req, res) => {
     try {
         const {
             fullName,
@@ -42,8 +48,8 @@ app.post("/send", upload.array("files"), async (req, res) => {
             port: 465,
             secure: true,
             auth: {
-                user: "example@yandex.ru",
-                pass: "qwerty1234",
+                user: "example",
+                pass: "example",
             },
         });
 
